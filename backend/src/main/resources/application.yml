@@ -1,0 +1,58 @@
+spring:
+  profiles:
+    active: dev
+server:
+  servlet:
+    context-path: /bootcam
+logging:
+  pattern:
+    dateformat: hh:mm
+  level:
+    org:
+      hibernate:
+        sql: debug
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:mysql://localhost/ecommerce
+    username: root
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+ec:
+  message: "Hola mundo spring boot"
+  secret-key-password: 5uP3r53cR37k3yPW
+
+menu:
+  options:
+    - label: Mantenimiento
+      icon: pi pi-pencil
+      items:
+        - label: Usuario
+          icon: pi pi-user-edit
+          routerLink: /mantenimiento/usuario
+        - label: Producto
+          icon: pi pi-id-card
+          routerLink: /mantenimiento/productos
+
+
+product-api:
+  url: https://dummyjson.com/products
+---
+spring:
+  config:
+    activate:
+      on-profile: prd
+ec:
+  message: "Hola mundo prd"
+  secret-key-password: 5uP3r53cR37k3yPW
